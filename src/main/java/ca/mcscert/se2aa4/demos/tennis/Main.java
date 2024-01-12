@@ -5,15 +5,22 @@ import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.util.logging.LogManager;
+
 
 public class Main {
 
     public static int PLAYER1_STRENGTH;
     public static int PLAYER2_STRENGTH;
 
+    protected static final Logger logger = LogManager.getLogger();
+
     public static void main(String[] args) {
-        System.out.println("** Starting Tennis Counter Assistant");
-        System.out.println("**** Reading Command-Line Arguments");
+        logger.info("** Starting Tennis Counter Assistant");
+        logger.info("**** Reading Command-Line Arguments");
         Options options = new Options();
         options.addOption("p1", true, "Strength of Player 1 in [0,100]");
         options.addOption("p2", true, "Strength of Player 2 in [0,100]");
@@ -25,10 +32,10 @@ public class Main {
             PLAYER2_STRENGTH = Integer.parseInt(cmd.getOptionValue("p2","50"));
             System.out.println("****** P2's Strength is " + PLAYER2_STRENGTH+"/100");
         } catch (ParseException pe) {
-            System.err.println("An error has occurred");
+            logger.error("An error has occurred");
         }
-        System.out.println("**** Starting game");
-        System.out.println("** TODO...");
-        System.out.println("** Closing Tennis Counter Assistant");
+        logger.info("**** Starting game");
+        logger.info("** TODO...");
+        logger.info("** Closing Tennis Counter Assistant");
     }
 }
